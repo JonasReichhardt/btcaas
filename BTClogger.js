@@ -1,11 +1,14 @@
+exports.port = 'COM4'
+exports.timeout = 200
+exports.shockLength = 150
 exports.start = function () {
     const fetch = require('node-fetch');
     const serial = require('serialport')
 
     const url = 'https://api.coindesk.com/v1/bpi/currentprice.json'; //Powered by CoinDesk
     const sleepTime = 60000; //one minute in millis
-    const timeout = 200; //timeout between serial messages
-    const shockLength = 150;
+    const timeout = exports.timeout; //timeout between serial messages
+    const shockLength = exports.shockLength;
 
     let serialPort;
     let lastVal;
@@ -17,7 +20,7 @@ exports.start = function () {
     async function main() {
         let signal;
 
-        serialPort = new serial('COM4');
+        serialPort = new serial(exports.port);
         if(serialPort === undefined){
             debugMode = true;
         }
