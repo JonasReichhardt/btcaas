@@ -1,0 +1,15 @@
+{
+  "name": "btcaas",
+  "version": "1.0.0",
+  "description": "Logging BTC price changes to serial port",
+  "main": "BTClogger.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jonas Reichhardt",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.3.0",
+    "serialport": "^7.1.0"
+  }
+}
