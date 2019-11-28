@@ -1,14 +1,16 @@
+
 exports.port = 'COM4'
 exports.timeout = 200
 exports.shockLength = 150
 exports.start = function () {
     const fetch = require('node-fetch');
     const serial = require('serialport')
+    const fs = require('fs')
 
     const url = 'https://api.coindesk.com/v1/bpi/currentprice.json'; //Powered by CoinDesk
     const sleepTime = 60000; //one minute in millis
     const timeout = exports.timeout; //timeout between serial messages
-    const shockLength = exports.shockLength;
+    const shockLength = exports.shockLength; // base shock length
 
     let serialPort;
     let lastVal;
@@ -20,8 +22,13 @@ exports.start = function () {
     async function main() {
         let signal;
 
-        serialPort = new serial(exports.port);
-        if(serialPort === undefined){
+        serialPort = new serial(exports.port, (error) => {
+            console.log(error)
+            console.log("running in debug mode")
+        })
+
+
+        if (serialPort === undefined) {
             debugMode = true;
         }
 
@@ -60,7 +67,7 @@ exports.start = function () {
             console.log('shock length:' + shockTime);
             console.log('price rise ↑')
         } else {
-            console.log('not a right signal');
+            console.log('not a right signal (normal at application startup)');
         }
     }
 

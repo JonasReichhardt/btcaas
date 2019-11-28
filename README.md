@@ -20,17 +20,32 @@ npm install btcaas
 
 ### Attributes
 
-`port` the port for the communication with the Arduino.
+`port` port for the communication with the Arduino.
 
-`timeout` the time between the two shocks which are drawing the arrow
+`timeout` time between the two shocks which are drawing the arrow
 
-`shockLength` the base shock time. Note that the base shock time gets added with the price difference multiplied by 10.
+`shockLength` the base shock time. Note that the base shock time gets added with the price difference multiplied by 10.
 
 ```javascript
 var btcaas = require('btcaas')
 
 btcaas.port = "COM4" 
 btcaas.timeout = 200 
-btcaas.shockLength = 150 
+btcaas.shockLength = 150
 ```
 
+
+
+## Usage
+
+After setting up the attributes you can run the package with
+
+```javascript
+var btcaas = require('btcaas')
+
+btcaas.start()
+```
+
+
+
+The method start an infinite loop in which the price is retrieved and logged every minute.
