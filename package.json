@@ -10,6 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "node-fetch": "^2.3.0",
-    "serialport": "^7.1.0"
+    "serialport": "^11.0.0"
   }
 }
